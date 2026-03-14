@@ -1,4 +1,4 @@
-import { getBrawlerById, createBrawlerPin, replaceFooter, getAllTierLists, createTierListButton } from "../../data/data.js";
+import { getBrawlerById, createBrawlerPin, replaceFooter, getAllTierLists, createTierListButton } from "../data/data.js";
 
 replaceFooter();
 

@@ -1,4 +1,4 @@
-import { getTierListByVersion, replaceFooter, createBrawlerPin, UP_ARROW, DOWN_ARROW, NEW_ARROW, rankToNum, createTierListButton } from "../../data/data.js";
+import { getTierListByVersion, replaceFooter, createBrawlerPin, UP_ARROW, DOWN_ARROW, NEW_ARROW, rankToNum, createTierListButton } from "../data/data.js";
 
 function getLastFolder(url, num)
 {
