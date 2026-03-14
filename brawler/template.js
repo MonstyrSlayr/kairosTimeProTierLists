@@ -111,9 +111,9 @@ function drawGraph()
 
         // horizontal lines starting from top:
         const daLetters = ["S", "A", "B", "C", "D", "F"];
-        const topPadding = 20; // px
+        const topPadding = 23; // px
         const bottomPadding = 15; // px
-        const rightPadding = 15; // px
+        const rightPadding = 18; // px
         const leftPadding = 10; // px
         const tierFontSize = 24;
         const versionFontSize = 12;
