@@ -5,7 +5,7 @@
 
 body
 {
-    background: linear-gradient(#32a3ff, #0249bf);
+    background: linear-gradient(to bottom, #32a3ff, #0249bf);
     color: white;
     min-height: 100vh;
 }
@@ -19,10 +19,24 @@ body
     margin: 0em 2em;
 }
 
+header
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 h1
 {
     font-size: 40px;
     margin: 1em;
+    text-align: center;
+}
+
+p
+{
+    text-align: center;
 }
 
 a
@@ -54,6 +68,7 @@ a:hover, a > *:hover
     display: flex;
     justify-content: center;
     align-items: center;
+    text-wrap: nowrap;
 }
 
 .tierListButton:hover
@@ -68,6 +83,115 @@ a:hover, a > *:hover
     user-select: none;
 }
 
+#tierList
+{
+    display: grid;
+    grid-template-columns: 15% 85%;
+    width: 80%;
+}
+
+.tierLetterDiv
+{
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #405279, #334263);
+}
+
+.tierBrawlersDiv
+{
+    background: linear-gradient(to bottom, rgb(46, 46, 46), rgb(41, 41, 41));
+    border: solid black 1px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#adjacentButtons
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.antiButton, .antiButton:hover, .antiButton > *:hover
+{
+    color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: none;
+    cursor: default;
+}
+
+.pin
+{
+    height: 100px;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.pin:hover
+{
+    scale: 112%;
+}
+
+.pinMain
+{
+    width: 100%;
+}
+
+.pinArrow
+{
+    width: 44%;
+    height: 44%;
+    position: absolute;
+    left: 60%;
+    top: 60%;
+    rotate: 10deg;
+    opacity: 0%;
+}
+
+#sliderDiv
+{
+    width: 40%;
+    margin: 1em;
+}
+
+#sliderLabels
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#arrowScroll
+{
+    color: white;
+    outline: none;
+    accent-color: white;
+}
+
+#youtubeVideo
+{
+    border-radius: 0.5em;
+    margin: 1em;
+    max-width: 95%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
 footer
 {
     margin-top: 1em;
@@ -77,4 +201,71 @@ footer > p
 {
     font-size: 24px;
     margin: 1em;
+    text-align: left;
+}
+
+@media screen and (max-width: 1000px)
+{
+    #adjacentButtons
+    {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 900px)
+{
+    #sliderDiv
+    {
+        width: 85%;
+    }
+
+    #tierList
+    {
+        width: 95%;
+    }
+
+    header
+    {
+        flex-direction: column;
+    }
+
+    .antiButton
+    {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+    .tierListButton > label
+    {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 500px)
+{
+    #tierList
+    {
+        grid-template-columns: 25% 75%;
+    }
+
+    .pin
+    {
+        width: 75px;
+        height: 75px;
+    }
+
+    .tierListButton > label
+    {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 400px)
+{
+    #adjacentButtons
+    {
+        flex-direction: column;
+    }
 }

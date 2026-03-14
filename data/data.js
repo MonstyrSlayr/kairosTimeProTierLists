@@ -5,17 +5,34 @@ function isLiveServer()
 
 export const LINK = isLiveServer() ? "http://127.0.0.1:5500/" : "https://monstyrslayr.github.io/kairosTimeProTierLists/";
 
-const NEUTRAL_PIN_START = LINK + "img/";
+const IMG_LINK = LINK + "img/";
 const NEUTRAL_PIN_END = "_pin.png";
+
+export const UP_ARROW = IMG_LINK + "up_arrow.webp";
+export const DOWN_ARROW = IMG_LINK + "down_arrow.webp";
+export const NEW_ARROW = IMG_LINK + "new_arrow.webp";
 
 const TIER_LIST_LINK = LINK + "tierList/";
 
 const TIER_DATA_CSV = LINK + "data/tierData.csv";
 const BRAWLER_DATA_CSV = LINK + "data/brawlerData.csv";
 
+const BRAWLER_LINK = LINK + "brawler/";
+
 const preRanks = ["S", "A", "B", "C", "F"];
 const rankCutoff = 29;
 const postRanks = ["S", "A", "B", "C", "D", "F"];
+
+// TODO: EASING
+export function rankToNum(rank)
+{
+    if (rank == "S") return 5;
+    if (rank == "A") return 4;
+    if (rank == "B") return 3;
+    if (rank == "C") return 2;
+    if (rank == "D") return 1;
+    return 0;
+}
 
 class TierList
 {
@@ -24,14 +41,16 @@ class TierList
     date;
     notes;
     tiers;
+    pros;
 
-    constructor(version, youtubeId, date, notes)
+    constructor(version, youtubeId, date, notes, pros)
     {
         this.version = version;
         this.youtubeId = youtubeId;
         this.date = date;
         this.notes = notes;
         this.tiers = [];
+        this.pros = pros;
     }
 
     addTier(newTier)
@@ -53,6 +72,15 @@ class TierList
     {
         const tier = this.tiers.find(t => t.letter == tierLetter);
         tier.addBrawler(brawler);
+    }
+
+    getBrawlerTier(brawler)
+    {
+        for (const tier of this.tiers)
+        {
+            if (tier.brawlers.has(brawler)) return tier.letter;
+        }
+        return null;
     }
 }
 
@@ -82,12 +110,12 @@ class Brawler
     constructor(name)
     {
         this.name = name;
-        this.id = name.replace(/[^a-zA-Z0-9]/g, '');
-        this.neutral = NEUTRAL_PIN_START + this.id + NEUTRAL_PIN_END;
+        this.id = name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        this.neutral = IMG_LINK + this.id + NEUTRAL_PIN_END;
     }
 }
 
-async function getAllBrawlers()
+export async function getAllBrawlers()
 {
     const brawlers = [];
 
@@ -110,7 +138,7 @@ async function getAllBrawlers()
 
 const brawlers = await getAllBrawlers();
 
-function getBrawlerById(id)
+export function getBrawlerById(id)
 {
     return brawlers.find(brawler => brawler.id == id);
 }
@@ -118,6 +146,28 @@ function getBrawlerById(id)
 function getBrawlerByName(name)
 {
     return brawlers.find(brawler => brawler.name == name);
+}
+
+export function createBrawlerPin(brawler, arrow = null)
+{
+    const daDiv = document.createElement("a");
+    daDiv.href = BRAWLER_LINK + brawler.id;
+    daDiv.classList.add("pin");
+
+        const brawlerImg = document.createElement("img");
+        brawlerImg.src = brawler.neutral;
+        brawlerImg.classList.add("pinMain");
+        daDiv.appendChild(brawlerImg);
+
+        if (arrow != null)
+        {
+            const arrowImg = document.createElement("img");
+            arrowImg.src = arrow;
+            arrowImg.classList.add("pinArrow");
+            daDiv.appendChild(arrowImg);
+        }
+    
+    return daDiv;
 }
 
 export async function getAllTierLists()
@@ -137,7 +187,7 @@ export async function getAllTierLists()
         if (line.video == "") continue;
 
         const version = parseInt(line.version);
-        const daTierList = new TierList(version, line.video, new Date(line.date), line.notes);
+        const daTierList = new TierList(version, line.video, new Date(line.date), line.notes, line.pros);
         tierLists.push(daTierList);
 
         const ranks = version >= rankCutoff ? postRanks : preRanks;
@@ -198,7 +248,7 @@ export async function getTierListByVersion(v)
         const version = parseInt(line.version);
         if (v != version) continue;
 
-        daList = new TierList(version, line.video, new Date(line.date), line.notes);
+        daList = new TierList(version, line.video, new Date(line.date), line.notes, line.pros);
 
         const ranks = version >= rankCutoff ? postRanks : preRanks;
 
@@ -238,14 +288,14 @@ export async function getTierListByVersion(v)
     return daList;
 }
 
-export function createTierListButton(tierList)
+export function createTierListButton(tierList, prevText = "", nextText = "", isFake = false)
 {
     const daButton = document.createElement("a");
-    daButton.href = TIER_LIST_LINK + "v" + tierList.version;
+    if (!isFake) daButton.href = TIER_LIST_LINK + "v" + tierList.version;
     daButton.classList.add("tierListButton");
 
         const daLabel = document.createElement("label");
-        daLabel.textContent = "v" + tierList.version;
+        daLabel.textContent = prevText + "v" + tierList.version + nextText;
         daButton.appendChild(daLabel);
 
     return daButton;

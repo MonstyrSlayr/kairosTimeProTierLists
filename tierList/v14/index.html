@@ -9,15 +9,55 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <title>KairosTime Pro Tier List v14</title>
 </head>
 <body>
     <div class="bodyLiner">
-        <h1>KairosTime Pro Tier List v14</h1>
+        <header>
+            <a href="../." class="tierListButton">
+                <label>< All</label>
+            </a>
+            <h1>KairosTime Pro Tier List v14</h1>
+            <a href="../." class="tierListButton antiButton">
+                <label>All ></label>
+            </a>
+        </header>
+
+        <div id="sliderDiv">
+            <div id="sliderLabels">
+                <label>Hide Arrows</label>
+                <label>Transparent Arrows</label>
+                <label>Show Arrows</label>
+            </div>
+            <input type="range" orient="horizontal" id="arrowScroll" min="0" max="2" value="0">
+        </div>
+
+        <div id="tierList">
+
+        </div>
+
+        <p>* Brawlers are not necessarily in any particular order within tiers on this website</p>
+
+        <h2 id="date"></h2>
+        <h2 id="numPros"></h2>
+
+        <div id="youtubeVideo">
+
+        </div>
+
+        <div id="adjacentButtons">
+            <a id="prevTierList" class="tierListButton">
+
+            </a>
+            <a id="nextTierList" class="tierListButton">
+
+            </a>
+        </div>
     </div>
 
     <footer></footer>
 
-    <script src="./script.js" type="module"></script>
+    <script src="../template.js" type="module"></script>
 </body>
 </html>
