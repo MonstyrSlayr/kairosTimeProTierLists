@@ -1,5 +1,6 @@
 class TierList
 {
+    version; // 1 indexed
     youtubeId;
     date;
     notes;
@@ -50,3 +51,23 @@ class Brawler
     id;
     image;
 }
+
+const TIER_DATA_CSV = "https://monstyrslayr.github.io/kairosTimeProTierLists/data/tierData.csv";
+const BRAWLER_DATA_CSV = "https://monstyrslayr.github.io/kairosTimeProTierLists/data/brawlerData.csv";
+
+async function getAllTierLists()
+{
+    const tierLists = [];
+
+	const tierCsv = await fetch(TIER_DATA_CSV);
+    if (!tierCsv.ok)
+	{
+		throw new Error("Network response was not ok");
+	}
+	const tierCsvText = await tierCsv.text();
+	const tierResults = await Papa.parse(tierCsvText, { header: true });
+
+    console.log(tierResults);
+}
+
+getAllTierLists();
