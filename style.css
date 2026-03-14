@@ -1,0 +1,80 @@
+*
+{
+    transition: all 0.15s;
+}
+
+body
+{
+    background: linear-gradient(#32a3ff, #0249bf);
+    color: white;
+    min-height: 100vh;
+}
+
+.bodyLiner
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0em 2em;
+}
+
+h1
+{
+    font-size: 40px;
+    margin: 1em;
+}
+
+a
+{
+    color: white;
+    text-decoration: underline;
+}
+
+a:hover, a > *:hover
+{
+    color: white;
+    cursor: pointer;
+}
+
+.tierListsDiv
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tierListButton
+{
+    margin: 0.5em;
+    background-color: rgba(52, 52, 52, 0.288);
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tierListButton:hover
+{
+    scale: 105%;
+}
+
+.tierListButton > label
+{
+    margin: 0.5em 1.5em;
+    font-size: 40px;
+    user-select: none;
+}
+
+footer
+{
+    margin-top: 1em;
+}
+
+footer > p
+{
+    font-size: 24px;
+    margin: 1em;
+}

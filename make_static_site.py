@@ -19,6 +19,11 @@ if __name__ == "__main__":
     clean_subdirectories(tier_base)
     clean_subdirectories(brawler_base)
 
+    tier_template_content = None
+
+    with open(tier_base + "/template.html", "r", encoding="utf-8") as f:
+        tier_template_content = f.read()
+
     with open("./data/tierData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)
 
@@ -29,6 +34,12 @@ if __name__ == "__main__":
             if (video != ""):
                 folder_path = os.path.join(tier_base, version)
                 os.makedirs(folder_path, exist_ok=True)
+
+                replaced = tier_template_content
+                replaced = replaced.replace("{version}", version)
+
+                with open(os.path.join(folder_path, "index.html"), "w", encoding="utf-8") as out:
+                    out.write(replaced)
 
     with open("./data/brawlerData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)
