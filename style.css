@@ -8,6 +8,7 @@ body
     background: linear-gradient(to bottom, #32a3ff, #0249bf);
     color: white;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .bodyLiner
@@ -17,6 +18,7 @@ body
     justify-content: center;
     align-items: center;
     margin: 0em 2em;
+    position: relative;
 }
 
 header
@@ -31,6 +33,11 @@ h1
 {
     font-size: 40px;
     margin: 1em;
+    text-align: center;
+}
+
+h2
+{
     text-align: center;
 }
 
@@ -221,10 +228,17 @@ footer > p
     align-items: center;
 }
 
+#kairosOverTimeDivWrapper
+{
+    width: 100%;
+    overflow-x: scroll;
+}
+
 #kairosOverTimeDiv
 {
-    width: 95%;
+    width: 1600px;
     aspect-ratio: 16 / 3;
+    margin: auto;
 }
 
 #kairosOverTime
@@ -263,6 +277,11 @@ footer > p
     {
         display: none;
     }
+
+    .horizontallyBlessed
+    {
+        width: 95%;
+    }
 }
 
 @media screen and (max-width: 600px)
@@ -297,5 +316,10 @@ footer > p
     #adjacentButtons
     {
         flex-direction: column;
+    }
+
+    .horizontallyBlessed
+    {
+        width: 100%;
     }
 }
