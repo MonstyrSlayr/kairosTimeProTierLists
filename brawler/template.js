@@ -93,20 +93,27 @@ modeRankingSpan.textContent = modes.join(", ");
 
 // make da graph... WITHOUT AN ALREADY EXISTING API
 // HAHAHAHAHAHAhahaha... ughhhhh
+const graphWrapper = document.getElementById("kairosOverTimeDivWrapper");
 const graph = document.getElementById("kairosOverTime");
 const graphCtx = graph.getContext("2d");
+const overlay = document.getElementById("kairosOverLay");
+const overlayCtx = overlay.getContext("2d");
 
 function drawGraph()
 {
     const daWidth = graph.width;
     const daHeight = graph.height;
+    const olWidth = overlay.width;
+    const olHeight = overlay.height;
     const brawlerPinImg = new Image();
 
     brawlerPinImg.addEventListener("load", () =>
     {
         graphCtx.clearRect(0, 0, daWidth, daHeight);
+        overlayCtx.clearRect(0, 0, olWidth, olHeight);
 
         graphCtx.fillStyle = "white";
+        overlayCtx.fillStyle = "white";
         graphCtx.lineWidth = 2;
 
         // horizontal lines starting from top:
@@ -122,6 +129,10 @@ function drawGraph()
         graphCtx.font = tierFontSize + "px sans-serif";
         graphCtx.textAlign = "left";
         graphCtx.textBaseline = "middle";
+
+        overlayCtx.font = tierFontSize + "px sans-serif";
+        overlayCtx.textAlign = "left";
+        overlayCtx.textBaseline = "middle";
 
         function tierToY(tier)
         {
@@ -143,7 +154,7 @@ function drawGraph()
             graphCtx.lineTo(daWidth - rightPadding, daY);
             graphCtx.stroke();
 
-            graphCtx.fillText(daLetters[i], 0, daY);
+            overlayCtx.fillText(daLetters[i], 0, daY);
         }
 
         // vertical lines starting from left: v1 - recent v
@@ -211,12 +222,20 @@ function drawGraph()
     });
 
     brawlerPinImg.src = brawler.neutral;
-}
 
-drawGraph();
+    graphWrapper.scrollLeft = 999999;
+    overlay.style.left = graphWrapper.scrollLeft;
+}
 
 const resizeObserver = new ResizeObserver(entries =>
 {
     drawGraph();
 });
 resizeObserver.observe(graph);
+
+graphWrapper.addEventListener("scroll", function()
+{
+    overlay.style.left = graphWrapper.scrollLeft;
+});
+
+drawGraph();

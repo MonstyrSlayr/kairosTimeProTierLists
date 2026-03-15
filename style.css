@@ -232,6 +232,17 @@ footer > p
 {
     width: 100%;
     overflow-x: scroll;
+    position: relative;
+}
+
+#kairosOverLay
+{
+    width: 200px;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 #kairosOverTimeDiv
