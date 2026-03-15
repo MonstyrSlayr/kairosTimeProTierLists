@@ -34,6 +34,16 @@ export function rankToNum(rank)
     return 0;
 }
 
+export function numToRank(num)
+{
+    if (num >= 4.5) return "S";
+    if (num >= 3.5) return "A";
+    if (num >= 2.5) return "B";
+    if (num >= 1.5) return "C";
+    if (num >= 0.5) return "D";
+    return "F";
+}
+
 class TierList
 {
     version; // 1 indexed

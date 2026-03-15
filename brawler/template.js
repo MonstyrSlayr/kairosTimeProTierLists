@@ -1,4 +1,4 @@
-import { getBrawlerById, createBrawlerPin, replaceFooter, getAllTierLists, createTierListButton } from "../data/data.js";
+import { getBrawlerById, createBrawlerPin, replaceFooter, getAllTierLists, createTierListButton, rankToNum, numToRank } from "../data/data.js";
 
 replaceFooter();
 
@@ -90,6 +90,14 @@ const modes = getModes(allRankings);
 
 const modeRankingSpan = document.getElementById("modeRanking");
 modeRankingSpan.textContent = modes.join(", ");
+
+const rankNums = allRankings.map(rank => rankToNum(rank));
+let daTotal = 0;
+rankNums.forEach(num => daTotal += num);
+const daAvg = daTotal / allRankings.length;
+
+const avgRankingSpan = document.getElementById("meanRanking");
+avgRankingSpan.textContent = numToRank(daAvg);
 
 // make da graph... WITHOUT AN ALREADY EXISTING API
 // HAHAHAHAHAHAhahaha... ughhhhh
@@ -239,3 +247,16 @@ graphWrapper.addEventListener("scroll", function()
 });
 
 drawGraph();
+
+const graphLegend = document.getElementById("graphLegend");
+
+    const brawlerIntroDiv = document.createElement("div");
+    graphLegend.appendChild(brawlerIntroDiv);
+
+        const legendPin = document.createElement("img");
+        legendPin.src = brawler.neutral;
+        brawlerIntroDiv.appendChild(legendPin);
+
+        const introText = document.createElement("label");
+        introText.textContent = ": Brawler Introduced";
+        brawlerIntroDiv.appendChild(introText);
