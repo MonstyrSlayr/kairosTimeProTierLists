@@ -510,7 +510,7 @@ export function replaceFooter()
     const para = document.createElement("p");
     para.innerHTML = `
         This website is not officially associated with KairosTime or KairosTime Gaming in any way.</br>
-        Please, PLEASE support the source material! This website would not be possible without the work of KairosTime.</br>
+        Please support the source videos! This website would not be possible without the work of KairosTime and the professional Brawl Stars players.</br>
         This content is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not responsible for it. For more information see Supercell’s Fan Content Policy: <a href="https://www.supercell.com/fan-content-policy" target="_blank">www.supercell.com/fan-content-policy</a></br>
         Report any issues and feedback to <a href="https://discord.com/channels/@me/434840883637125121" target="_blank">@MonstyrSlayr on Discord</a></br>
         <a href="https://github.com/MonstyrSlayr/kairosTimeProTierLists" target="_blank">Source Code</a>
