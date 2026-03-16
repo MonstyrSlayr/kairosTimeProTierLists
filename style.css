@@ -196,7 +196,7 @@ a:hover, a > *:hover
     margin: 1em;
     max-width: 95%;
     height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 24 / 9;
 }
 
 footer
@@ -245,8 +245,8 @@ footer > p
 
 #kairosOverTimeDiv
 {
-    width: 1600px;
-    aspect-ratio: 16 / 3;
+    width: 2400px;
+    aspect-ratio: 24 / 3;
     margin: auto;
 }
 
