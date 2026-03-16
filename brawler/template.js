@@ -245,6 +245,10 @@ function drawGraph()
                     leftArrow = NEW_ARROW;
                 }
             }
+            else
+            {
+                leftArrow = NEW_ARROW;
+            }
             
             const daTierNum = daLetters.findIndex(letter => letter == brawlerTier);
             const daY = tierToY(daTierNum);

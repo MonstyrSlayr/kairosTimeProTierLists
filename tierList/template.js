@@ -163,6 +163,10 @@ for (const tier of tierList.tiers)
                 }
             }
         }
+        else
+        {
+            leftArrow = NEW_ARROW;
+        }
 
         const daPin = createBrawlerPin(brawler, rightArrow, leftArrow);
         arrowSet.add(rightArrow);
