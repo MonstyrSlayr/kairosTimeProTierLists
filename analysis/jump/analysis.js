@@ -45,13 +45,13 @@ for (const brawler of brawlers)
 
     buffList.addBrawlerToTier(brawler, buff);
 
-    if (!nerfList.hasTier(nerf))
+    if (!nerfList.hasTier(-nerf))
     {
-        const daTier = new Tier(nerf);
+        const daTier = new Tier(-nerf);
         nerfList.addTier(daTier);
     }
 
-    nerfList.addBrawlerToTier(brawler, nerf);
+    nerfList.addBrawlerToTier(brawler, -nerf);
 }
 
 buffList.tiers.sort((a, b) => b.letter - a.letter);
