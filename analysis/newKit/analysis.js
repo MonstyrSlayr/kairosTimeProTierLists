@@ -1,4 +1,4 @@
-import { getAllBrawlers, getAllTierLists, postTierList, rankToNum, replaceFooter, Tier, TierList } from "../data/data.js";
+import { getAllBrawlers, getAllTierLists, postTierList, rankToNum, replaceFooter, Tier, TierList } from "../../data/data.js";
 
 replaceFooter();
 
