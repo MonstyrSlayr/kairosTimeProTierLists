@@ -97,11 +97,15 @@ a:hover, a > *:hover
     height: 80px;
 }
 
-#tierList
+.tierList
 {
     display: grid;
     grid-template-columns: 15% 85%;
     width: 80%;
+    border-radius: 1em;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden;
 }
 
 .tierLetterDiv
@@ -316,7 +320,7 @@ footer > p
         width: 85%;
     }
 
-    #tierList
+    .tierList
     {
         width: 95%;
     }
@@ -347,7 +351,7 @@ footer > p
 
 @media screen and (max-width: 500px)
 {
-    #tierList
+    .tierList
     {
         grid-template-columns: 25% 75%;
     }

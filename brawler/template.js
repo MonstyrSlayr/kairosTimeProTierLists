@@ -235,7 +235,7 @@ function drawGraph()
     
                 const releaseDifference = brawler.release - tierList.date;
                 const releaseDifferencePrev = brawler.release - previousTierList.date;
-    
+                
                 if (releaseDifference >= 0 || brawler.release == null)
                 {
                     leftArrow = UNRELEASED_ARROW;
