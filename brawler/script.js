@@ -1,4 +1,4 @@
-import { createBrawlerPin, getAllBrawlers, replaceFooter } from "../data/data.js";
+import { createBrawlerButton, getAllBrawlers, replaceFooter } from "../data/data.js";
 
 replaceFooter();
 
@@ -7,6 +7,6 @@ const brawlers = await getAllBrawlers();
 const brawlersDiv = document.getElementById("allBrawlers");
 for (const brawler of brawlers)
 {
-    const daPin = createBrawlerPin(brawler);
+    const daPin = createBrawlerButton(brawler);
     brawlersDiv.appendChild(daPin);
 }

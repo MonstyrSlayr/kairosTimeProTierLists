@@ -11,6 +11,12 @@ const NEUTRAL_PIN_END = "_pin.png";
 export const UP_ARROW = IMG_LINK + "up_arrow.webp";
 export const DOWN_ARROW = IMG_LINK + "down_arrow.webp";
 export const NEW_ARROW = IMG_LINK + "new_arrow.webp";
+export const UNRELEASED_ARROW = IMG_LINK + "unreleased_arrow.webp";
+export const STAR_POWER_2_ARROW = IMG_LINK + "star_power_2_arrow.png";
+export const GADGET_1_ARROW = IMG_LINK + "gadget_1_arrow.png";
+export const GADGET_2_ARROW = IMG_LINK + "gadget_2_arrow.png";
+export const HYPERCHARGE_ARROW = IMG_LINK + "hypercharge_arrow.png";
+export const BUFFIE_ARROW = IMG_LINK + "buffie_arrow.png";
 
 const TIER_LIST_LINK = LINK + "tierList/";
 
@@ -117,11 +123,19 @@ class Brawler
     id;
     neutral;
 
-    constructor(name)
+    constructor(name, release, starPower1, starPower2, gadget1, gadget2, hypercharge, buffies)
     {
         this.name = name;
         this.id = name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
         this.neutral = IMG_LINK + this.id + NEUTRAL_PIN_END;
+
+        this.release = release == "" ? null : new Date(release);
+        this.starPower1 = starPower1 == "" ? null : new Date(starPower1);
+        this.starPower2 = starPower2 == "" ? null : new Date(starPower2);
+        this.gadget1 = gadget1 == "" ? null : new Date(gadget1);
+        this.gadget2 = gadget2 == "" ? null : new Date(gadget2);
+        this.hypercharge = hypercharge == "" ? null : new Date(hypercharge);
+        this.buffies = buffies == "" ? null : new Date(buffies);
     }
 }
 
@@ -139,7 +153,7 @@ export async function getAllBrawlers()
 
     for (const line of brawlerResults.data)
     {
-        const brawler = new Brawler(line.brawler);
+        const brawler = new Brawler(line.brawler, line.released, line.star_power_1, line.star_power_2, line.gadget_1, line.gadget_2, line.hypercharge, line.buffies);
         brawlers.push(brawler);
     }
 
@@ -158,7 +172,21 @@ function getBrawlerByName(name)
     return brawlers.find(brawler => brawler.name == name);
 }
 
-export function createBrawlerPin(brawler, arrow = null)
+export function addImageToLegend(legend, image, label)
+{
+    const introDiv = document.createElement("div");
+    legend.appendChild(introDiv);
+
+        const legendPin = document.createElement("img");
+        legendPin.src = image;
+        introDiv.appendChild(legendPin);
+
+        const introText = document.createElement("label");
+        introText.textContent = label;
+        introDiv.appendChild(introText);
+}
+
+export function createBrawlerPin(brawler, rightArrow = null, leftArrow = null)
 {
     const daDiv = document.createElement("a");
     daDiv.href = BRAWLER_LINK + brawler.id;
@@ -169,15 +197,43 @@ export function createBrawlerPin(brawler, arrow = null)
         brawlerImg.classList.add("pinMain");
         daDiv.appendChild(brawlerImg);
 
-        if (arrow != null)
+        if (rightArrow != null)
         {
             const arrowImg = document.createElement("img");
-            arrowImg.src = arrow;
+            arrowImg.src = rightArrow;
             arrowImg.classList.add("pinArrow");
+            arrowImg.classList.add("right");
+            daDiv.appendChild(arrowImg);
+        }
+
+        if (leftArrow != null)
+        {
+            const arrowImg = document.createElement("img");
+            arrowImg.src = leftArrow;
+            arrowImg.classList.add("pinArrow");
+            arrowImg.classList.add("left");
             daDiv.appendChild(arrowImg);
         }
     
     return daDiv;
+}
+
+export function createBrawlerButton(brawler)
+{
+    const daButton = document.createElement("a");
+    daButton.href = BRAWLER_LINK + brawler.id;
+    daButton.classList.add("tierListButton");
+
+        const brawlerImg = document.createElement("img");
+        brawlerImg.src = brawler.neutral;
+        brawlerImg.classList.add("pinSide");
+        daButton.appendChild(brawlerImg);
+
+        const daLabel = document.createElement("label");
+        daLabel.textContent = brawler.name;
+        daButton.appendChild(daLabel);
+
+    return daButton;
 }
 
 export async function getAllTierLists()

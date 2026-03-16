@@ -76,6 +76,7 @@ a:hover, a > *:hover
     justify-content: center;
     align-items: center;
     text-wrap: nowrap;
+    padding: 0.5em 1.5em;
 }
 
 .tierListButton:hover
@@ -85,9 +86,15 @@ a:hover, a > *:hover
 
 .tierListButton > label
 {
-    margin: 0.5em 1.5em;
     font-size: 40px;
     user-select: none;
+    margin: 0 0.5em;
+}
+
+.tierListButton > .pinSide
+{
+    width: auto;
+    height: 80px;
 }
 
 #tierList
@@ -162,12 +169,22 @@ a:hover, a > *:hover
 .pinArrow
 {
     width: 44%;
-    height: 44%;
+    height: auto;
     position: absolute;
-    left: 60%;
     top: 60%;
-    rotate: 10deg;
     opacity: 0%;
+}
+
+.pinArrow.left
+{
+    left: 0%;
+    rotate: -10deg;
+}
+
+.pinArrow.right
+{
+    left: 60%;
+    rotate: 10deg;
 }
 
 #sliderDiv
@@ -196,7 +213,7 @@ a:hover, a > *:hover
     margin: 1em;
     max-width: 95%;
     height: auto;
-    aspect-ratio: 24 / 9;
+    aspect-ratio: 16 / 9;
 }
 
 footer
@@ -276,7 +293,7 @@ footer > p
 #graphLegend > div > img
 {
     width: 48px;
-    margin: -0.5em;
+    margin: 0em;
 }
 
 #graphLegend > div > label
