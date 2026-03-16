@@ -67,7 +67,7 @@ a:hover, a > *:hover
     flex-wrap: wrap;
 }
 
-.tierListButton
+.tierListButton, .tierLostButton
 {
     margin: 0.5em;
     background-color: rgba(52, 52, 52, 0.288);
@@ -79,19 +79,29 @@ a:hover, a > *:hover
     padding: 0.5em 1.5em;
 }
 
-.tierListButton:hover
+.tierListButton
+{
+    flex-direction: row;
+}
+
+.tierLostButton
+{
+    flex-direction: column;
+}
+
+.tierListButton:hover, .tierLostButton:hover
 {
     scale: 105%;
 }
 
-.tierListButton > label
+.tierListButton > label, .tierLostButton > label
 {
     font-size: 40px;
     user-select: none;
     margin: 0 0.5em;
 }
 
-.tierListButton > .pinSide
+.tierListButton > .pinSide, .tierLostButton > .pinSide
 {
     width: auto;
     height: 80px;
@@ -343,7 +353,7 @@ footer > p
 
 @media screen and (max-width: 600px)
 {
-    .tierListButton > label
+    .tierListButton > label, .tierLostButton > label
     {
         font-size: 32px;
     }
@@ -362,7 +372,7 @@ footer > p
         height: 75px;
     }
 
-    .tierListButton > label
+    .tierListButton > label, .tierLostButton > label
     {
         font-size: 24px;
     }

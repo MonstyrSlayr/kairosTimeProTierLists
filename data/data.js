@@ -226,6 +226,24 @@ export function createBrawlerPin(brawler, rightArrow = null, leftArrow = null)
     return daDiv;
 }
 
+export function createBrawlerPercentage(brawler, percentage)
+{
+    const daButton = document.createElement("a");
+    daButton.href = BRAWLER_LINK + brawler.id;
+    daButton.classList.add("tierLostButton");
+
+        const brawlerImg = document.createElement("img");
+        brawlerImg.src = brawler.neutral;
+        brawlerImg.classList.add("pinSide");
+        daButton.appendChild(brawlerImg);
+
+        const daLabel = document.createElement("label");
+        daLabel.textContent = (percentage * 100).toFixed(2) + "%";
+        daButton.appendChild(daLabel);
+
+    return daButton;
+}
+
 export function createBrawlerButton(brawler)
 {
     const daButton = document.createElement("a");
