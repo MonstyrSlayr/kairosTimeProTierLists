@@ -64,7 +64,7 @@ export class TierList
         this.version = version;
         this.youtubeId = youtubeId;
         this.date = date;
-        this.notes = notes;
+        this.notes = notes.split('\n');
         this.tiers = [];
         this.pros = pros;
     }

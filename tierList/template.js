@@ -43,6 +43,16 @@ daDate.textContent = Intl.DateTimeFormat("en-US", dateFormat).format(tierList.da
 const daPros = document.getElementById("numPros");
 daPros.textContent = "# of Pros: " + tierList.pros;
 
+const daNotes = document.getElementById("notes");
+for (const note of tierList.notes)
+{
+    if (note == "") continue;
+    
+    const someP = document.createElement("p");
+    someP.textContent = "* " + note;
+    daNotes.appendChild(someP);
+}
+
 const previousTierList = await getTierListByVersion(tierList.version - 1);
 const nextTierList = await getTierListByVersion(tierList.version + 1);
 
