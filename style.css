@@ -379,6 +379,14 @@ footer > p
     }
 }
 
+@media screen and (max-width: 750px)
+{
+    .epicFuckingGrid
+    {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media screen and (max-width: 600px)
 {
     .tierListButton > label, .tierLostButton > label
