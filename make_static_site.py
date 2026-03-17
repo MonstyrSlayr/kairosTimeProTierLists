@@ -2,6 +2,7 @@ import os
 import csv
 import shutil
 import requests
+import datetime
 
 def clean_subdirectories(directory):
     if not os.path.exists(directory):
@@ -31,6 +32,7 @@ if __name__ == "__main__":
 
     with open("./data/tierData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)
+        tier_lists = []
 
         for row in reader:
             version = "v" + row["version"].strip()
@@ -62,9 +64,18 @@ if __name__ == "__main__":
             folder_path = os.path.join(brawler_base, brawler_id)
             os.makedirs(folder_path, exist_ok=True)
 
+            version = None
+            i = 1
+            while version == None:
+                if (row["rank_" + str(i)] != ""):
+                    version = i
+                    break
+                i += 1
+
             replaced = brawler_template_content
             replaced = replaced.replace("{name}", brawler)
             replaced = replaced.replace("{id}", brawler_id)
+            replaced = replaced.replace("{version}", "v" + str(version))
 
             with open(os.path.join(folder_path, "index.html"), "w", encoding="utf-8") as out:
                 out.write(replaced)
