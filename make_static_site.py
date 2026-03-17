@@ -1,6 +1,7 @@
 import os
 import csv
 import shutil
+import requests
 
 def clean_subdirectories(directory):
     if not os.path.exists(directory):
@@ -44,6 +45,12 @@ if __name__ == "__main__":
 
                 with open(os.path.join(folder_path, "index.html"), "w", encoding="utf-8") as out:
                     out.write(replaced)
+                
+                img_url = f"https://img.youtube.com/vi/{video}/maxresdefault.jpg"
+                r = requests.get(img_url)
+                if r.status_code == 200:
+                    with open(os.path.join(folder_path, "thumbnail.jpg"), "wb") as f:
+                        f.write(r.content)
 
     with open("./data/brawlerData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)
