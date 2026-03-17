@@ -402,6 +402,11 @@ footer > p
     {
         width: 100%;
     }
+
+    .tierListBackground
+    {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 750px)
