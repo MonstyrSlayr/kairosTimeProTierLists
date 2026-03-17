@@ -97,6 +97,8 @@ a:hover, a > *:hover
     text-wrap: nowrap;
     padding: 0.5em 1.5em;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .tierListButton
@@ -130,6 +132,14 @@ a:hover, a > *:hover
 {
     width: auto;
     height: 80px;
+}
+
+.tierListBackground
+{
+    position: absolute;
+    z-index: -1;
+    width: 150%;
+    filter: brightness(60%) saturate(40%);
 }
 
 .tierList

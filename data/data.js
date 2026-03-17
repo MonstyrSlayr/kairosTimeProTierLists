@@ -496,6 +496,11 @@ export function createTierListButton(tierList, prevText = "", nextText = "", isF
     if (!isFake) daButton.href = TIER_LIST_LINK + "v" + tierList.version;
     daButton.classList.add("tierListButton");
 
+        const daBg = document.createElement("img");
+        daBg.classList.add("tierListBackground");
+        daBg.src = `${TIER_LIST_LINK}v${tierList.version}/thumbnail.jpg`;
+        daButton.appendChild(daBg);
+
         const daLabel = document.createElement("label");
         daLabel.textContent = prevText + "v" + tierList.version + nextText;
         daButton.appendChild(daLabel);
