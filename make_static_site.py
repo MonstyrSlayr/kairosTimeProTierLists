@@ -33,6 +33,7 @@ if __name__ == "__main__":
     with open("./data/tierData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)
         tier_lists = []
+        latest_thumb = None
 
         for row in reader:
             version = "v" + row["version"].strip()
@@ -53,6 +54,10 @@ if __name__ == "__main__":
                 if r.status_code == 200:
                     with open(os.path.join(folder_path, "thumbnail.jpg"), "wb") as f:
                         f.write(r.content)
+                        latest_thumb = r.content
+        
+        with open(os.path.join("./img/latestThumbnail.jpg"), "wb") as f:
+            f.write(latest_thumb)
 
     with open("./data/brawlerData.csv", newline='', encoding="utf-8") as f:
         reader = csv.DictReader(f)

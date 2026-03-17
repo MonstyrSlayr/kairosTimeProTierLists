@@ -21,7 +21,7 @@ let firstTierList;
 let firstRanking;
 let mostRecentTierList;
 let mostRecentRanking;
-let allRankings = [];
+const allRankings = [];
 
 for (const tierList of tierLists)
 {
