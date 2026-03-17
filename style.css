@@ -329,12 +329,13 @@ footer > p
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: top;
+    align-items: start;
 }
 
 #graphLegend > div > img
 {
     width: 48px;
+    height: auto;
     margin: 0em;
 }
 
