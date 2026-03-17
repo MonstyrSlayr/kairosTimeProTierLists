@@ -381,6 +381,19 @@ footer > p
     }
 }
 
+@media screen and (max-width: 800px)
+{
+    .tierListsDiv
+    {
+        width: 95%;
+    }
+
+    .tierListButton
+    {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 750px)
 {
     .epicFuckingGrid
